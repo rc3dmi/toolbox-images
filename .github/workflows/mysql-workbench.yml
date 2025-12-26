@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - .github/workflows/reusable-build.yml
       - .github/workflows/mysql-workbench.yml
       - images/mysql-workbench/**
   workflow_dispatch:
