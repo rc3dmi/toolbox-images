@@ -1,0 +1,18 @@
+ARG IMAGE_TAG
+FROM registry.fedoraproject.org/fedora-toolbox:${IMAGE_TAG}
+
+ARG IMAGE_TAG
+ENV NAME=mysql-workbench-toolbox VERSION=${IMAGE_TAG}
+LABEL com.github.containers.toolbox="true" \
+    com.redhat.component="$NAME" \
+    name="$NAME" \
+    version="$VERSION" \
+    usage="This image is meant to be used with the toolbox command" \
+    summary="MySQL Workbench toolbox container" \
+    maintainer="Dušan Simić <dusan.simic@dmi.uns.ac.rs>"
+
+RUN dnf install -y https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.45-1.el9.x86_64.rpm && \
+    dnf clean all && \
+    rm -rf /var/cache/dnf
+
+ENV LC_ALL=en_US.UTF-8

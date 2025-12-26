@@ -1,0 +1,21 @@
+name: MySQL Workbench Image Build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/mysql-workbench.yml
+      - images/mysql-workbench/**
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    name: Build MySQL Workbench image
+    uses: ./.github/workflows/reusable-build.yml
+    secrets: inherit
+    with:
+      image-name: mysql-workbench
+      image-tag: "36"
+      containerfile-path: images/mysql-workbench
+      context-path: images/mysql-workbench
